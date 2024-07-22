@@ -32,3 +32,25 @@ if (require.main === module) {
 }
 
 module.exports = hasTargetSum;
+function hasTargetSum(nums, target) {
+  let seenNumbers = {};
+
+  for (let num of nums) {
+      let complement = target - num;
+      if (seenNumbers[complement]) {
+          return true;
+      }
+      seenNumbers[num] = true;
+  }
+
+  return false;
+}
+
+// Additional test cases
+console.log(hasTargetSum([3, 8, 12, 4, 11, 7], 10)); // true
+console.log(hasTargetSum([22, 19, 4, 6, 30], 25)); // true
+console.log(hasTargetSum([1, 2, 5], 4)); // false
+console.log(hasTargetSum([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 20)); // true
+console.log(hasTargetSum([1, 2, 3, 4, 5], 10)); // true
+console.log(hasTargetSum([], 5)); // false
+
